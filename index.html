@@ -3,28 +3,48 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>cf1ns.meeting.grid | 2027—2028 学术会议总表</title>
+<title>2027—2028 美国、欧洲与亚太学术会议总表</title>
 <style>
 :root{
   --bg:#f7f6f2;--card:#fff;--ink:#1d1d1f;--mute:#6b6b70;--line:#e4e2dc;
-  --ok:#1f7a4d;--okbg:#e5f3eb;--fix:#b4410f;--fixbg:#fdeee4;--unk:#8a6d00;--unkbg:#fbf4d6;
+  --fix:#b4410f;--fixbg:#fdeee4;--unk:#8a6d00;--unkbg:#fbf4d6;
   --open:#1f5fbf;--openbg:#e6efff;--closed:#7a7a7a;--closedbg:#efefef;--tbd:#6b4fa3;--tbdbg:#f0eafb;
+  --urgent:#c0281b;--urgentbg:#fde8e6;--live:#16a34a;
   --us:#b3261e;--eu:#1f4fa0;--ap:#0f7b6c;
 }
 @media (prefers-color-scheme: dark){
   :root{--bg:#141416;--card:#1d1d20;--ink:#ececee;--mute:#9d9da3;--line:#2e2e33;
-  --okbg:#173326;--fixbg:#3a2316;--unkbg:#352d10;--openbg:#16263f;--closedbg:#2a2a2e;--tbdbg:#2a2238;
-  --ok:#6fd3a0;--fix:#ffa36b;--unk:#e9c95a;--open:#8fb6ff;--closed:#aaa;--tbd:#c3a8f0;--us:#ff8a80;--eu:#8fb0ff;--ap:#5fd3c0}
+  --fixbg:#3a2316;--unkbg:#352d10;--openbg:#16263f;--closedbg:#2a2a2e;--tbdbg:#2a2238;--urgentbg:#3d1714;
+  --fix:#ffa36b;--unk:#e9c95a;--open:#8fb6ff;--closed:#aaa;--tbd:#c3a8f0;--urgent:#ff8a7a;--live:#4ade80;
+  --us:#ff8a80;--eu:#8fb0ff;--ap:#5fd3c0}
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.55 -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif}
 .wrap{max-width:1480px;margin:0 auto;padding:28px 20px 60px}
 h1{font-size:24px;margin:0 0 6px;letter-spacing:.01em}
-.sub{color:var(--mute);margin:0 0 20px}
-.legend{display:flex;flex-wrap:wrap;gap:10px 18px;margin:0 0 16px;font-size:13px;color:var(--mute)}
+.sub{color:var(--mute);margin:0 0 18px}
+.num{font-variant-numeric:tabular-nums}
+/* live header */
+.live{display:grid;grid-template-columns:minmax(260px,1fr) minmax(320px,1.4fr) minmax(220px,.9fr);gap:12px;margin:0 0 18px}
+@media (max-width:900px){.live{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.card .lbl{font-size:12px;color:var(--mute);display:flex;align-items:center;gap:6px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--live);animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.25}}
+.clock{font-size:34px;font-weight:700;letter-spacing:.02em;line-height:1.15;margin-top:4px}
+.clock-date{font-size:13px;color:var(--mute)}
+.next-name{font-size:15px;font-weight:650;margin-top:4px}
+.cd{display:flex;gap:8px;margin-top:6px}
+.cd div{background:var(--bg);border-radius:8px;padding:6px 0;min-width:58px;text-align:center}
+.cd b{display:block;font-size:24px;line-height:1.1}
+.cd span{font-size:11px;color:var(--mute)}
+.stats{display:flex;flex-direction:column;gap:6px;margin-top:6px;font-size:13px}
+.stats b{font-size:18px;margin-right:4px}
+.legend{display:flex;flex-wrap:wrap;gap:10px 18px;margin:0 0 14px;font-size:13px;color:var(--mute)}
 .pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
-.ok{color:var(--ok);background:var(--okbg)}.fix{color:var(--fix);background:var(--fixbg)}.unk{color:var(--unk);background:var(--unkbg)}
-.st-open{color:var(--open);background:var(--openbg)}.st-closed{color:var(--closed);background:var(--closedbg)}.st-tbd{color:var(--tbd);background:var(--tbdbg)}
+.st-open{color:var(--open);background:var(--openbg)}.st-closed{color:var(--closed);background:var(--closedbg)}.st-tbd{color:var(--tbd);background:var(--tbdbg)}.st-urgent{color:var(--urgent);background:var(--urgentbg)}
+.tag{font-size:11px;font-weight:700;padding:0 6px;border-radius:4px;margin-right:4px}
+.tag.fix{color:var(--fix);background:var(--fixbg)}.tag.unk{color:var(--unk);background:var(--unkbg)}
 .controls{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;align-items:center}
 .seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--card)}
 .seg button{border:0;background:transparent;color:var(--ink);padding:6px 12px;font:inherit;font-size:13px;cursor:pointer}
@@ -33,7 +53,7 @@ h1{font-size:24px;margin:0 0 6px;letter-spacing:.01em}
 input[type=search]{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:6px 10px;font:inherit;font-size:13px;min-width:200px}
 .count{color:var(--mute);font-size:13px;margin-left:auto}
 .tablebox{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:auto}
-table{border-collapse:collapse;width:100%;min-width:1280px}
+table{border-collapse:collapse;width:100%;min-width:1320px}
 th,td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
 th{position:sticky;top:0;background:var(--card);font-size:12px;color:var(--mute);font-weight:600;z-index:1;cursor:pointer;user-select:none;white-space:nowrap}
 th:hover{color:var(--ink)}
@@ -44,9 +64,14 @@ td.name small{display:block;font-weight:400;color:var(--mute);font-size:12px}
 .region.US{color:var(--us)}.region.EU{color:var(--eu)}.region.AP{color:var(--ap)}
 .date{white-space:nowrap;font-variant-numeric:tabular-nums}
 .date small{display:block;color:var(--mute);font-size:11.5px;white-space:normal}
-.days{display:block;font-size:11.5px;color:var(--open);font-weight:600}
+.days{display:block;font-size:12px;font-weight:700;color:var(--open)}
+.days.urgent{color:var(--urgent)}
+.days.muted{color:var(--mute);font-weight:500}
+.links{display:flex;flex-direction:column;gap:3px;white-space:nowrap}
+.links a{color:var(--open);text-decoration:none;font-size:12.5px}
+.links a:hover{text-decoration:underline}
+.links a.s{color:var(--mute)}
 .note{font-size:12.5px;color:var(--mute);min-width:240px}
-.note b{color:var(--ink);font-weight:600}
 del{color:var(--fix);opacity:.8}
 .foot{margin-top:22px;font-size:12.5px;color:var(--mute)}
 .foot h3{color:var(--ink);font-size:14px;margin:18px 0 6px}
@@ -56,20 +81,35 @@ del{color:var(--fix);opacity:.8}
 <body>
 <div class="wrap">
 <h1>2027—2028 美国、欧洲与亚太学术会议总表</h1>
-<p class="sub">控制 · 电力系统 · 电力电子 · 机器学习 · 机器人 &nbsp;|&nbsp; 核对日期 2026-11-19，状态与倒计时均以此日为准 &nbsp;|&nbsp; 点击表头可排序</p>
+<p class="sub">控制 · 电力系统 · 电力电子 · 机器学习 · 机器人 &nbsp;|&nbsp; 会议信息核对于 2026-11-19 &nbsp;|&nbsp; 倒计时按你设备的当前时间实时计算，截止时间按惯例取当天 23:59 AoE（UTC−12） &nbsp;|&nbsp; 点击表头可排序</p>
+
+<div class="live">
+  <div class="card">
+    <div class="lbl"><span class="dot"></span>当前时间 <span id="tz"></span></div>
+    <div class="clock num" id="clock">--:--:--</div>
+    <div class="clock-date" id="cdate"></div>
+  </div>
+  <div class="card">
+    <div class="lbl">最近的投稿截止</div>
+    <div class="next-name" id="nextName">—</div>
+    <div class="cd num" id="nextCd"></div>
+  </div>
+  <div class="card">
+    <div class="lbl">投稿窗口</div>
+    <div class="stats num" id="stats"></div>
+  </div>
+</div>
 
 <div class="legend">
-  <span><span class="pill ok">✓ 已核实</span> 与官网或主办方一致</span>
-  <span><span class="pill fix">✎ 已更正</span> 原表有误，已改为官方信息</span>
-  <span><span class="pill unk">? 部分待定</span> 仅有第三方来源或官网未写明</span>
-  <span><span class="pill st-open">未截止</span><span class="pill st-closed">已截止</span><span class="pill st-tbd">待公布</span></span>
+  <span><span class="pill st-urgent">≤14 天</span><span class="pill st-open">未截止</span><span class="pill st-closed">已截止</span><span class="pill st-tbd">待公布</span></span>
+  <span><span class="tag fix">更正</span>原表有误已改 &nbsp; <span class="tag unk">待定</span>仅第三方来源或官网未写明</span>
+  <span>链接：蓝色为官网或征稿页，灰色“搜索”表示未找到可核实的官网地址</span>
 </div>
 
 <div class="controls">
   <div class="seg" id="fRegion"><button data-v="all" class="on">全部地区</button><button data-v="US">美国</button><button data-v="EU">欧洲</button><button data-v="AP">亚太</button></div>
   <div class="seg" id="fYear"><button data-v="all" class="on">全部年份</button><button data-v="2027">2027</button><button data-v="2028">2028</button></div>
   <div class="seg" id="fStatus"><button data-v="all" class="on">全部状态</button><button data-v="open">未截止</button><button data-v="tbd">待公布</button><button data-v="closed">已截止</button></div>
-  <div class="seg" id="fCheck"><button data-v="all" class="on">全部核对结果</button><button data-v="fix">仅看更正</button><button data-v="unk">仅看待定</button></div>
   <input type="search" id="q" placeholder="搜索会议、城市、方向…">
   <span class="count" id="count"></span>
 </div>
@@ -84,7 +124,7 @@ del{color:var(--fix);opacity:.8}
   <th data-k="d2">后续节点</th>
   <th data-k="conf">正式开会日期</th>
   <th data-k="status">投稿状态</th>
-  <th data-k="check">核对结果</th>
+  <th>相关链接</th>
   <th>说明</th>
 </tr></thead>
 <tbody id="tb"></tbody>
@@ -92,7 +132,7 @@ del{color:var(--fix);opacity:.8}
 </div>
 
 <div class="foot">
-<h3>核对后需要特别留意的更正</h3>
+<h3>核对后需要特别留意的更正（说明列中以“更正”“待定”标出）</h3>
 <ul>
 <li><b>CASE 2028（芝加哥）</b>：IEEE RAS 官方场地页为 8 月 16–20 日，原表写的 8 月 13–17 日有误；投稿截止 2028-03-01 正确。</li>
 <li><b>ACC 2028（旧金山）</b>：正式会期为 5 月 31 日–6 月 2 日（周三至周五），原表 5 月 29 日起始应为把会前 workshop 计入；投稿截止尚未公布，但已公布 2028-01-23 发通知，按惯例全文截止约在 2027 年 9 月下旬，L-CSS 联合通道为 2027-09-12。</li>
@@ -118,11 +158,10 @@ del{color:var(--fix);opacity:.8}
 <h3>未列入（不在上述地区）</h3>
 <ul><li>ICML 2027 巴西里约热内卢；NeurIPS 2026 主会场在悉尼（已过）。</li></ul>
 </div>
+
 </div>
 
 <script>
-const TODAY = new Date('2026-11-19T00:00:00');
-// d1sort: ISO date used for sorting/countdown (first future-relevant deadline)
 const R = [
 // ===== 2027 USA =====
 {y:2027,r:'US',name:'TPEC 2027',full:'IEEE Texas Power & Energy Conf.',field:'电力系统',city:'College Station, TX',d1:'2026-11-15',d1n:'全文（官方注明不延期）',d2:'',conf:'2027-02-07～09',status:'closed',check:'ok',note:'TAMU 电力组官网确认。'},
@@ -180,20 +219,105 @@ const R = [
 {y:2027,r:'AP',name:'ETFG 2027',full:'IEEE Energy Technologies for Future Grids',field:'电力系统/电网',city:'澳大利亚·卧龙岗',d1:'2027-03-01',d1n:'全文',d2:'通知 2027-07-01',conf:'2027-12-05～09',status:'open',check:'ok',note:'IEEE IAS 主办，PES/PELS/IES 技术赞助；可推荐至 IEEE Trans. Industry Applications。'},
 {y:2027,r:'AP',name:'AUPEC 2027',full:'IEEE PES Australasian Universities Power Eng. Conf.',field:'电力系统',city:'澳洲/新西兰（待公布）',d1:'',d1n:'待公布（往年约 7 月）',d2:'',conf:'待公布（往年 9–11 月）',status:'tbd',check:'unk',note:'2026 届在霍巴特；2027 主办校尚未公布。'}
 ];
+// 官网 = official site; 投稿 = CFP / submission page; 搜索 = fallback when no verified official URL
+const G = q => 'https://www.google.com/search?q=' + encodeURIComponent(q);
+const L = {
+'TPEC 2027':[['官网','https://tpec.engr.tamu.edu/']],
+'APEC 2027':[['官网','https://apec-conf.org/']],
+'HRI 2027':[['官网','https://humanrobotinteraction.org/2027/']],
+'PES Grid Edge 2027':[['官网','https://pes-gridedge.org/'],['征稿页','https://pes-gridedge.org/education/call-for-participation/']],
+'ICLR 2027':[['官网','https://iclr.cc/'],['投稿 OpenReview','https://openreview.net/']],
+'CVPR 2027':[['官网','https://cvpr.thecvf.com/'],['投稿 OpenReview','https://openreview.net/']],
+'ACC 2027':[['官网','https://acc2027.a2c2.org/']],
+'PES GM 2027':[['官网','https://pes-gm.org/'],['征稿','https://ieee-pes.org/calls/2027-ieee-pes-general-meeting-call-for-papers/']],
+'ECCE 2027':[['官网','https://www.ieee-ecce.org/2027/']],
+'FutureGrid 2027':[['PELS 日程','https://www.ieee-pels.org/conferences/conference-schedule/'],['搜索',G('IEEE FutureGrid 2027 Denver')]],
+'MECC 2027':[['AACC','https://a2c2.org/'],['搜索',G('MECC 2027 Salt Lake City')]],
+'APEC 2028':[['官网','https://apec-conf.org/']],
+'PES T&D 2028':[['PES 日程','https://ieee-pes.org/events/upcoming-events/'],['搜索',G('IEEE PES T&D 2028 Atlanta')]],
+'ACC 2028':[['官网','https://acc2028.a2c2.org/'],['作者须知','https://acc2028.a2c2.org/author-information/']],
+'ICML 2028':[['官网','https://icml.cc/']],
+'PES GM 2028':[['官网','https://pes-gm.org/']],
+'CASE 2028':[['RAS 场地页','https://www.ieee-ras.org/conferences-workshops/fully-sponsored/case/past-and-future-venues/']],
+'ECCE 2028':[['官网','https://www.ieee-ecce.org/']],
+'NeurIPS 2028':[['官网','https://neurips.cc/']],
+'DPSP 2027':[['IET 活动','https://events.theiet.org/'],['搜索',G('DPSP 2027 Munich IET')]],
+'CIGRE Symposium 2027':[['CIGRE','https://www.cigre.org/'],['搜索',G('CIGRE Symposium Heidelberg 2027')]],
+'RPG Global 2027':[['IET 活动','https://events.theiet.org/'],['搜索',G('RPG Global 2027 IET Birmingham')]],
+'CIRED 2027':[['CIRED','https://www.cired.net/'],['搜索',G('CIRED 2027 Stockholm')]],
+'RSS 2027':[['官网','https://roboticsconference.org/']],
+'ECC 2027':[['官网','https://ecc27.euca-ecc.org/']],
+'CASE 2027':[['官网','https://2027.ieeecase.org/']],
+'ECCE Europe 2027':[['官网','https://www.ecce-europe.org/2027/'],['征稿','https://www.ecce-europe.org/2027/authors/reviewers/call-for-papers/']],
+'UPEC 2027':[['搜索',G('UPEC 2027 Larnaca Cyprus')]],
+'PowerTech 2027':[['搜索',G('IEEE PowerTech 2027 Bruges')]],
+'EEM 2027':[['官网','https://eem27.de/']],
+'IROS 2027':[['搜索',G('IROS 2027 Florence')]],
+'ECAI 2027':[['EurAI','https://www.eurai.org/'],['搜索',G('ECAI 2027 Athens')]],
+'ISGT Europe 2027':[['官网','https://ieee-isgt-europe.org/']],
+'CDC 2027':[['官网','https://cdc2027.ieeecss.org/']],
+'NeurIPS 2027':[['官网','https://neurips.cc/']],
+'ECC 2028':[['EUCA','https://euca-ecc.org/ecc.html']],
+'PSCC 2028':[['官网','https://pscc2028.dryfta.com/']],
+'CIGRE Session 2028':[['CIGRE','https://www.cigre.org/']],
+'SEST 2028':[['官网','https://www.fe.up.pt/sest2028/']],
+'ECAI 2028':[['官网','https://ecai2028.eu/']],
+'CPEEE 2027':[['PES 日程','https://ieee-pes.org/events/upcoming-events/'],['搜索',G('CPEEE 2027 Yokohama')]],
+'ICPE 2027–ECCE Asia':[['官网','https://www.icpe-conf.org/'],['会议概览','https://www.icpe-conf.org/main/ci_overview.htm']],
+'ICRA 2027':[['搜索',G('ICRA 2027 Seoul')]],
+'CCTA 2027':[['IEEE CSS','https://ieeecss.org/'],['搜索',G('CCTA 2027 Hiroshima')]],
+'PEDS 2027':[['官网','https://peds-ieee.org/']],
+'GTD Asia 2027':[['官网','https://www.ieeegtd2027.org/']],
+'SmartGridComm 2027':[['官网','https://sgc2027.ieee-smartgridcomm.org/']],
+'ICCAS 2027':[['ICROS','https://icros.org/eng/sub/sub04_1.asp']],
+'ETFG 2027':[['官网','https://attend.ieee.org/etfg-2027/'],['征稿 PDF','https://attend.ieee.org/etfg-2027/wp-content/uploads/sites/849/Call-for-Papers-ETFG-2027-A4-Flyer-20260521.pdf']],
+'AUPEC 2027':[['上届官网','https://attend.ieee.org/aupec-2026/']]
+};
 
 const RN = {US:'美国',EU:'欧洲',AP:'亚太（日·韩·新·澳·新西兰）'}, RS = {US:'美',EU:'欧',AP:'亚太'};
-const ST = {open:['未截止','st-open'],closed:['已截止','st-closed'],tbd:['待公布','st-tbd']};
-const CK = {ok:['✓ 已核实','ok'],fix:['✎ 已更正','fix'],unk:['? 部分待定','unk']};
-const f = {r:'all',y:'all',s:'all',c:'all',q:''};
+const ST = {open:['未截止','st-open'],closed:['已截止','st-closed'],tbd:['待公布','st-tbd'],urgent:['即将截止','st-urgent']};
+const DAY = 864e5;
+const f = {r:'all',y:'all',s:'all',q:''};
 let sortK=null, sortDir=1;
 
-function days(iso){ if(!iso) return null; return Math.round((new Date(iso+'T00:00:00')-TODAY)/864e5); }
-function esc(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+// deadline = end of that day, Anywhere on Earth (UTC-12)
+function dlEnd(iso){ const [y,m,d]=iso.split('-').map(Number); return Date.UTC(y,m-1,d,23,59,59)+12*3600e3; }
+function localMid(iso){ const [y,m,d]=iso.split('-').map(Number); return new Date(y,m-1,d).getTime(); }
+function today0(){ const n=new Date(); return new Date(n.getFullYear(),n.getMonth(),n.getDate()).getTime(); }
+function confRange(s){
+  const m=s.match(/^(\d{4})-(\d{2})-(\d{2})(?:～(?:(\d{2})-)?(\d{2}))?/); if(!m) return null;
+  const st=`${m[1]}-${m[2]}-${m[3]}`, en = m[5] ? `${m[1]}-${m[4]||m[2]}-${m[5]}` : st;
+  return [localMid(st), localMid(en)];
+}
+function statusOf(d, now){
+  if(!d.d1) return 'tbd';
+  const left = dlEnd(d.d1) - now;
+  if(left < 0) return 'closed';
+  return left <= 14*DAY ? 'urgent' : 'open';
+}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 
-function row(d){
-  const dd = days(d.d1);
-  const d1 = d.d1 ? `${d.d1}${d.status==='open'&&dd>=0?`<span class="days">还剩 ${dd} 天</span>`:''}<small>${esc(d.d1n)}</small>` : `<small style="font-size:12.5px">${esc(d.d1n)}</small>`;
-  const conf = esc(d.conf) + (d.confOld?`<small>原表：<del>${esc(d.confOld)}</del></small>`:'');
+function row(d, now){
+  const st = statusOf(d, now);
+  let d1;
+  if(d.d1){
+    const left = dlEnd(d.d1) - now;
+    const n = Math.floor(left/DAY);
+    const tag = left<0 ? `<span class="days muted">已过 ${Math.floor(-left/DAY)} 天</span>`
+              : `<span class="days ${st==='urgent'?'urgent':''}">${n===0?'今天截止':'还剩 '+n+' 天'}</span>`;
+    d1 = `${d.d1}${tag}<small>${esc(d.d1n)}</small>`;
+  } else d1 = `<small style="font-size:12.5px">${esc(d.d1n)}</small>`;
+  let conf = esc(d.conf);
+  const cr = confRange(d.conf);
+  if(cr){
+    const t = today0();
+    const k = t < cr[0] ? `<span class="days muted">距开会 ${Math.round((cr[0]-t)/DAY)} 天</span>`
+            : t <= cr[1] ? `<span class="days">进行中</span>` : `<span class="days muted">已结束</span>`;
+    conf += k;
+  }
+  if(d.confOld) conf += `<small>原表：<del>${esc(d.confOld)}</del></small>`;
+  const lk = (L[d.name]||[]).map(([t,u])=>`<a href="${esc(u)}" target="_blank" rel="noopener"${t==='搜索'?' class="s"':''}>${esc(t)} ↗</a>`).join('');
+  const ck = d.check==='fix' ? '<span class="tag fix">更正</span>' : d.check==='unk' ? '<span class="tag unk">待定</span>' : '';
   return `<tr>
     <td class="name"><span class="region ${d.r}">${RS[d.r]}</span>${esc(d.name)}<small>${esc(d.full)}</small></td>
     <td>${esc(d.field)}</td>
@@ -201,42 +325,81 @@ function row(d){
     <td class="date">${d1}</td>
     <td class="date"><small style="font-size:12.5px;color:inherit">${esc(d.d2||'—')}</small></td>
     <td class="date">${conf}</td>
-    <td><span class="pill ${ST[d.status][1]}">${ST[d.status][0]}</span></td>
-    <td><span class="pill ${CK[d.check][1]}">${CK[d.check][0]}</span></td>
-    <td class="note">${esc(d.note||'')}</td>
+    <td><span class="pill ${ST[st][1]}">${ST[st][0]}</span></td>
+    <td><div class="links">${lk||'—'}</div></td>
+    <td class="note">${ck}${esc(d.note||'')}</td>
   </tr>`;
 }
-function key(d,k){
+const SO = {urgent:0,open:1,tbd:2,closed:3};
+function key(d,k,now){
   if(k==='d1') return d.d1||'9999';
   if(k==='conf') return d.conf.startsWith('待')?'9999':d.conf;
+  if(k==='status') return SO[statusOf(d,now)];
   return d[k]||'';
 }
 function render(){
-  let list = R.filter(d=>(f.r==='all'||d.r===f.r)&&(f.y==='all'||String(d.y)===f.y)&&(f.s==='all'||d.status===f.s)&&(f.c==='all'||d.check===f.c));
+  const now = Date.now();
+  let list = R.filter(d=>{
+    const st = statusOf(d,now); const sf = st==='urgent'?'open':st;
+    return (f.r==='all'||d.r===f.r)&&(f.y==='all'||String(d.y)===f.y)&&(f.s==='all'||sf===f.s);
+  });
   if(f.q){const q=f.q.toLowerCase(); list=list.filter(d=>(d.name+d.full+d.city+d.field+d.note).toLowerCase().includes(q));}
   let html='';
   if(sortK){
-    list=[...list].sort((a,b)=>key(a,sortK)>key(b,sortK)?sortDir:-sortDir);
-    html=list.map(row).join('');
+    list=[...list].sort((a,b)=>key(a,sortK,now)>key(b,sortK,now)?sortDir:-sortDir);
+    html=list.map(d=>row(d,now)).join('');
   } else {
     for(const y of [2027,2028]) for(const r of ['US','EU','AP']){
       const g=list.filter(d=>d.y===y&&d.r===r).sort((a,b)=>key(a,'conf')>key(b,'conf')?1:-1);
-      if(g.length) html+=`<tr class="yr"><td colspan="9">${y} 年 · ${RN[r]}（${g.length}）</td></tr>`+g.map(row).join('');
+      if(g.length) html+=`<tr class="yr"><td colspan="9">${y} 年 · ${RN[r]}（${g.length}）</td></tr>`+g.map(d=>row(d,now)).join('');
     }
   }
   document.getElementById('tb').innerHTML = html || '<tr><td colspan="9" style="color:var(--mute);padding:24px">没有符合条件的会议</td></tr>';
   document.getElementById('count').textContent = `共 ${list.length} / ${R.length} 个会议`;
+  renderStats(now);
 }
+function renderStats(now){
+  const open = R.filter(d=>d.d1 && dlEnd(d.d1)>now);
+  const within = n => open.filter(d=>dlEnd(d.d1)-now<=n*DAY).length;
+  document.getElementById('stats').innerHTML =
+    `<div><b>${within(14)}</b>个 14 天内截止</div><div><b>${within(90)}</b>个 90 天内截止</div><div><b>${open.length}</b>个仍可投稿</div>`;
+}
+const pad = n => String(n).padStart(2,'0');
+const WD = ['日','一','二','三','四','五','六'];
+let lastDay = '';
+function tick(){
+  const n = new Date(), now = n.getTime();
+  document.getElementById('clock').textContent = `${pad(n.getHours())}:${pad(n.getMinutes())}:${pad(n.getSeconds())}`;
+  const dayStr = `${n.getFullYear()} 年 ${n.getMonth()+1} 月 ${n.getDate()} 日 · 星期${WD[n.getDay()]}`;
+  document.getElementById('cdate').textContent = dayStr;
+  // nearest open deadline, live d/h/m/s
+  const next = R.filter(d=>d.d1 && dlEnd(d.d1)>now).sort((a,b)=>dlEnd(a.d1)-dlEnd(b.d1))[0];
+  if(next){
+    const ms = dlEnd(next.d1)-now, s=Math.floor(ms/1000);
+    document.getElementById('nextName').textContent = `${next.name} · ${next.d1}（${next.d1n}）`;
+    document.getElementById('nextCd').innerHTML =
+      [[Math.floor(s/86400),'天'],[Math.floor(s%86400/3600),'时'],[Math.floor(s%3600/60),'分'],[s%60,'秒']]
+      .map(([v,u])=>`<div><b>${u==='天'?v:pad(v)}</b><span>${u}</span></div>`).join('');
+  } else {
+    document.getElementById('nextName').textContent = '目前没有未截止的会议';
+    document.getElementById('nextCd').innerHTML = '';
+  }
+  // re-render the table whenever the local date changes or a deadline passes
+  const nextKey = dayStr + '|' + (next?next.name:'');
+  if(nextKey !== lastDay){ lastDay = nextKey; render(); }
+}
+try{ document.getElementById('tz').textContent = '· ' + Intl.DateTimeFormat().resolvedOptions().timeZone; }catch(e){}
+
 function seg(id,k){document.getElementById(id).addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
   [...e.currentTarget.children].forEach(x=>x.classList.toggle('on',x===b)); f[k]=b.dataset.v; render();});}
-seg('fRegion','r');seg('fYear','y');seg('fStatus','s');seg('fCheck','c');
+seg('fRegion','r');seg('fYear','y');seg('fStatus','s');
 document.getElementById('q').addEventListener('input',e=>{f.q=e.target.value.trim();render();});
 document.querySelectorAll('th[data-k]').forEach(th=>th.addEventListener('click',()=>{
   const k=th.dataset.k; if(sortK===k){ if(sortDir===1) sortDir=-1; else {sortK=null;sortDir=1;} } else {sortK=k;sortDir=1;}
   document.querySelectorAll('th').forEach(t=>t.textContent=t.textContent.replace(/ [▲▼]$/,''));
   if(sortK) th.textContent+= sortDir===1?' ▲':' ▼';
   render();}));
-render();
+tick(); setInterval(tick, 1000);
 </script>
 </body>
 </html>
